@@ -1,6 +1,6 @@
 This is maintained by the [HPEDEV Team](https://hpedev.io)
 
-We accept contribution from the HPE DEV Community. 
+We accept contributions from the HPE DEV Community. 
 Feel free to fork this repo and submit a pull request to contribute. 
 
 Follow the proposed structure:
