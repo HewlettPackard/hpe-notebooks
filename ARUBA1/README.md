@@ -25,11 +25,11 @@ These variables can be altered to match the user's particular setup.
 
 ## Jupyter requirements
 
-The notebook uses the Bash kernel.
+The notebook uses Python and requires the Python third-party library 'Requests'.  
+Install 'Requests' by running `pip install requests` in a terminal.
 
 ## Other dependencies
 
-This workbook uses the Python third-party library 'Requests'.  
-Install 'Requests' by running `pip install requests` in a terminal.
+None
 
 [View the notebook now](./HackShack-Aruba-Lab-1.ipynb)
