@@ -1,12 +1,12 @@
 # Aruba API Yourself
 
-The aim of this HackShack Jupyter workbook is to explain the basics of interacting with the Aruba AOS-CX REST API using Python.
+The aim of this HackShack Jupyter notebook is to explain the basics of interacting with the Aruba AOS-CX REST API using Python.
 
 # Prerequisites
 
 ## Lab Setup
 
-The workbook interacts with a test network made up of two interconnected AOS-CX devices. These can be virtual AOS-CX OVAs, but hardware is preferable. See the 'Lab Diagram' below and please note that the devices must be connected together using ports 1/1/1 in order for the default code to run successfully.
+The notebook interacts with a test network made up of two interconnected AOS-CX devices. These can be virtual AOS-CX OVAs, but hardware is preferable. See the 'Lab Diagram' below and please note that the devices must be connected together using ports 1/1/1 in order for the default code to run successfully.
 
 ### Lab Diagram
 
