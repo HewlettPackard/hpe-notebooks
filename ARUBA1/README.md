@@ -32,4 +32,4 @@ Install 'Requests' by running `pip install requests` in a terminal.
 
 None
 
-[View the notebook now](./HackShack-Aruba-Lab-1.ipynb)
+[View the notebook now](./1-WKSHP-ARUBA-API.ipynb.ipynb)
