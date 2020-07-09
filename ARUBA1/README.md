@@ -32,4 +32,4 @@ Install 'Requests' by running `pip install requests` in a terminal.
 
 None
 
-[View the notebook now](./1-WKSHP-ARUBA-API.ipynb.ipynb)
+[View the notebook now](./1-WKSHP-ARUBA-API.ipynb)
