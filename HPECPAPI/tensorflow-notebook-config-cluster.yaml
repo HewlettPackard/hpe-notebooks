@@ -1,0 +1,21 @@
+---
+apiVersion: "kubedirector.hpe.com/v1beta1"
+kind: "KubeDirectorCluster"
+metadata: 
+  name: "ml-jupyter-notebook-example"
+spec: 
+  app: "ml-jupyter-notebook"
+  appCatalog: "local"
+  roles: 
+    - 
+      id: "controller"
+      members: 1
+      resources: 
+        requests: 
+          memory: "2Gi"
+          cpu: "1"
+          nvidia.com/gpu: "0"
+        limits: 
+          memory: "2Gi"
+          cpu: "1"
+          nvidia.com/gpu: "0"
