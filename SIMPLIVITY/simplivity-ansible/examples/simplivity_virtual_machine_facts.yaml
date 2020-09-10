@@ -1,0 +1,55 @@
+###
+# Copyright (2019) Hewlett Packard Enterprise Development LP
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###
+---
+- hosts: all
+  vars:
+    - config: "{{ playbook_dir }}/simplivity_config.json"
+    - name: "Test vm"
+  tasks:
+    - name: Gather facts about all Virtual Machines
+      simplivity_virtual_machine_facts:
+        config: "{{ config }}"
+      delegate_to: localhost
+
+    - debug: var=virtual_machines
+
+    - name: Get all VMs with filters
+      simplivity_virtual_machine_facts:
+        config: "{{ config }}"
+        params:
+          filters:
+            name: "{{name}}"
+
+    - debug: var=virtual_machines
+
+    - name: Gather facts about a VM by name
+      simplivity_virtual_machine_facts:
+        config: "{{ config }}"
+        name: "{{ name }}"
+      delegate_to: localhost
+
+    - debug: var=virtual_machines
+
+    - name: Gather facts about a VM by name with options
+      simplivity_virtual_machine_facts:
+        config: "{{ config }}"
+        name: '{{ name }}'
+        options:
+          - backups
+      delegate_to: localhost
+
+    - debug: var=virtual_machines
+    - debug: var=backups

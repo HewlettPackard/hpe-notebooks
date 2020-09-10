@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Create a virtual machine on given ESXi hostname
+      vmware_guest:
+        hostname: "16.31.86.185"
+        username: "root"
+        password: "vmware"
+        validate_certs: no
+        folder: /
+        name: STUDENTXX_Ansible_demo_vm
+        state: present
+        guest_id: ubuntu64Guest
+        datacenter: CCP_Virt_0001
+        # This is hostname of particular ESXi server on which user wants VM to be deployed
+        esxi_hostname: "16.31.87.117"
+        disk:
+        - size_gb: 10
+          type: thick
+          datastore: DS_Virt_0001
+        hardware:
+          memory_mb: 256
+          num_cpus: 1
+        cdrom:
+          type: none
+        networks:
+        - name: VM Network
+          type: static
+          device_type: e1000
+      delegate_to: localhost
+      register: STUDENTXX_deploy_vm

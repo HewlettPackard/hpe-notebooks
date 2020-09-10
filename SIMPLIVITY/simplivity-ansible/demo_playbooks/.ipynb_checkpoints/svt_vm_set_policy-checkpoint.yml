@@ -1,0 +1,16 @@
+---
+- hosts: all
+  vars:
+    vm_name: STUDENTXX_Ansible_demo_vm
+    policy_name: Policy_01 
+  tasks:
+    - name: 'Simplivity set VM policy'
+      simplivity_virtual_machine:
+        ovc_ip: 16.31.87.107
+        username: root
+        password: vmware
+        state: set_policy
+        data:
+          name: '{{ vm_name }}'
+          policy_name: '{{ policy_name }}'
+      delegate_to: localhost
