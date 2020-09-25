@@ -1,0 +1,19 @@
+---
+- hosts: all
+  vars:
+    vm_name: STUDENTXX_Ansible_demo_vm
+  tasks:
+    - name: 'Simplivity create VM backup'
+      simplivity_virtual_machine:
+        ovc_ip: 16.31.87.107
+        username: administrator@vsphere.local
+        password: vmware
+        state: backup
+        data:
+          name: '{{ vm_name }}'
+          backup_name: '{{ vm_name }}_backup1'
+          cluster_name: null
+          app_consistent: false
+          consistency_type: null
+          retention: 0
+      delegate_to: localhost

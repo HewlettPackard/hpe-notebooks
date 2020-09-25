@@ -1,0 +1,97 @@
+###
+# Copyright (2019) Hewlett Packard Enterprise Development LP
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###
+---
+- hosts: all
+  vars:
+    config: "{{ playbook_dir }}/simplivity_config.json"
+    vm_1_name: vm name1
+    vm_2_name: vm name2
+    datastore_name: datastore name
+    policy_name: policy name
+  tasks:
+    - name: 'Set policy for multiple VMs'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: set_policy_for_multiple_vms
+        data:
+          vm_names:
+            - '{{ vm_1_name }}'
+            - '{{ vm_2_name }}'
+          policy_name: '{{ policy_name }}'
+      delegate_to: localhost
+
+    - name: 'Simplivity clone'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: clone
+        data:
+          name: '{{ vm_1_name }}'
+          new_name: '{{ vm_1_name}}_clone_test'
+      delegate_to: localhost
+
+    - name: 'Simplivity clone and move to another datastore'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: clone
+        data:
+          name: '{{ vm_1_name }}_clone_test'
+          new_name: '{{ vm_1_name }}_clone_and_move_test'
+          datastore: '{{ datastore_name }}'
+      delegate_to: localhost
+
+    - name: 'Simplivity move VM to another datastore'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: move
+        data:
+          name: '{{ vm_1_name }}'
+          new_name: '{{ vm_1_name }}_move_test'
+          datastore_name: '{{ datastore_name }}'
+      delegate_to: localhost
+
+    - name: 'Simplivity create VM backup'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: backup
+        data:
+          name: '{{ vm_1_name }}'
+          backup_name: '{{ vm_1_name }}_backup'
+          cluster_name: null
+          app_consistent: false
+          consistency_type: null
+          retention: 0
+      delegate_to: localhost
+
+    - name: 'Simplivity set VM policy'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: set_policy
+        data:
+          name: '{{ vm_1_name }}'
+          policy_name: '{{ policy_name }}'
+      delegate_to: localhost
+
+    - name: 'Simplivity set backup parameters'
+      simplivity_virtual_machine:
+        config: "{{ config }}"
+        state: set_backup_parameters
+        data:
+          name: '{{ vm_1_name }}'
+          guest_username: 'guest_username'
+          guest_password: 'guest_password'
+          override_guest_validation: false
+          app_aware_type: null
+      delegate_to: localhost
